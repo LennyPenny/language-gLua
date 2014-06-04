@@ -1,9 +1,9 @@
-'comment': 'Lua Syntax: version 0.8'
+'comment': 'gLua Syntax: version 0.0.1'
 'fileTypes': [
   'lua'
 ]
 'firstLineMatch': '\\A#!.*?\\blua\\b'
-'name': 'Lua'
+'name': 'gLua'
 'patterns': [
   {
     'captures':

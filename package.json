@@ -1,10 +1,10 @@
 {
-  "name": "language-lua",
-  "version": "0.9.0",
+  "name": "language-gLua",
+  "version": "0.0.1",
   "private": true,
-  "author": "FireZenk <firezenk@gmail.com>",
-  "description": "Add syntax highlighting and snippets to Lua files in Atom",
-  "repository": "https://github.com/FireZenk/language-lua",
+  "author": "Lennart Bernhardt <@ohitsLenny>",
+  "description": "Add syntax highlighting and snippets to gLua files in Atom",
+  "repository": "https://github.com/LennyPenny/language-gLua",
   "license": "MIT",
   "engines": {
     "atom": ">=0.50.0"

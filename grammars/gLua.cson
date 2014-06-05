@@ -3,8 +3,118 @@
   'lua'
 ]
 'firstLineMatch': '\\A#!.*?\\blua\\b'
+'foldingStartMarker': '^\s*\b(function|local\s+function|if|for)\b|{[ \t]*$|(\[\[)|()/\\*)'
+'foldingStopMarker': '\bend\b|^\s*}|\]\]|(\\*/)'
 'name': 'gLua'
 'patterns': [
-    
+    {
+        'comment': 'match function headers'
+
+        'captures':
+            '1': 'name': 'keyword.control.lua'
+            '2': 'name': 'entity.name.function.scope.lua'
+            '3': 'name': 'entity.name.function.lua'
+            '4': 'name': 'punctuation.definition.parameters.begin.lua'
+            '5': 'name': 'variable.parameter.function.lua'
+            '6': 'name': 'punctuation.definition.parameters.begin.end.lua'
+        'match': '\\b(function)\\s+([a-zA-Z_.:]+[.:])?([a-zA-Z_]\\w*)\\s*(\\()([^)]*)(\\))'
+    }
+
+    {
+        'comment': 'match single-qoutes strings'
+
+        'begin': '\''
+        'beginCaptures':
+            'name': 'punctuation.definition.string.begin.lua'
+        'end': '\''
+        'endCaptures':
+            'name': 'punctuation.definition.string.end.lua'
+
+        'name': 'string.qouted.single.lua'
+        'patterns': [ {
+            'match': '\\\\.'
+            'name': 'constant.character.escape.lua'
+        } ]
+    }
+
+    {
+        'comment': 'match double-qoutes strings'
+
+        'begin': '"'
+        'beginCaptures':
+            'name': 'punctuation.definition.string.begin.lua'
+        'end': '"'
+        'endCaptures':
+            'name': 'punctuation.definition.string.end.lua'
+
+        'name': 'string.qouted.double.lua'
+        'patterns': [ {
+            'match': '\\\\.'
+            'name': 'constant.character.escape.lua'
+        } ]
+    }
+
+    {
+        'comment': 'Multiline strings (standard lua)'
+
+        'begin': '(\\[(=*)\\[)'
+        'beginCaptures':
+            'name': 'punctuation.definition.string.begin.lua'
+        'end': '(\\](=*)\\])'
+        'endCaptures':
+            'name': 'punctuation.definition.string.end.lua'
+
+        'name': 'string.qouted.other.multiline.lua'
+        'patterns': [ {
+            'comment': 'matches for escaped chars'
+
+            'match': '\\\\.'
+            'name': 'constant.character.escape.lua'
+        } ]
+    }
+
+    {
+        'comment': 'Multiline comments (standard lua)'
+
+        'begin': '--(\\[(=*)\\[)'
+        'beginCaptures':
+            'name': 'punctuation.definition.comment.lua'
+        'end': '(\\](=*)\\])'
+
+        'name': 'comment.block.lua'
+    }
+
+    {
+        'comment': 'Multiline comments (gLua)'
+
+        'begin': '/\\*'
+        'beginCaptures':
+            'name': 'punctuation.definition.comment.lua'
+        'end': '\\*/'
+
+        'name': 'comment.block.lua'
+    }
+
+    {
+        'comment': 'Singleline comments (standart Lua)'
+
+        'match': '(--)(?!\\[\\[).*$\\n?'
+        'name': 'comment.line.double-dash.lua'
+    }
+
+    {
+        'comment': 'Singleline comments (gLua)'
+
+        'match': '(//)(?!\\[\\[).*$\\n?'
+        'name': 'comment.line.double-dash.lua'
+    }
+
+    {
+        'comment': 'Control keywords'
+
+        'match': '\\b(break|do|else|for|if|elseif|return|then|repeat|while|until|end|function|local|in|continue)\\b'
+        'name': 'keyword.control.lua'
+    }
+
 ]
 'scopeName': 'source.lua'
